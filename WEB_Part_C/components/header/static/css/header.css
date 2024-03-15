@@ -1,0 +1,23 @@
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.page-headers {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--text-color);
+    line-height: 1.25;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.myApp-header {
+    margin: auto auto auto 250px ;
+}
+

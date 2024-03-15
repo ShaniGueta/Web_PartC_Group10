@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Sign Up' %}
+{% set first_header = 'Healthy Teeth' %}
+{% set second_header = 'Sign Up' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('registration.static', filename='css/registration.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    {% if session.get('existEmailAlert') %}
+        <div id="existEmailAlert_h1">Email already registered to the system</div>
+    {% endif %}
+    <div class="form-box">
+        <form action="/registration" method="POST" class="my-form" id="regForm">
+            <label for="firstNameReg">First Name:</label>
+            <input type="text" name="first_name" id="firstNameReg" placeholder="Enter your first name" required>
+            <label for="lastNameReg">Last Name:</label>
+            <input type="text" name="last_name" id="lastNameReg" placeholder="Enter your last name" required>
+            <label for="emailReg">Email:</label>
+            <input type="email" name="email" id="emailReg" placeholder="Enter your email" required>
+            <label for="phoneReg">Phone Number:</label>
+            <input type="number" name="phone_number" id="phoneReg" placeholder="Enter your phone number" required>
+            <label for="dobReg">Birthdate:</label>
+            <input type="date" name="birthdate" id="dobReg" placeholder="Enter your birthdate" required>
+            <label for="passwordReg">Password:</label>
+            <input type="password" name="password" id="passwordReg" placeholder="Enter password" required>
+            <label for="confPasswordReg">Confirm Password:</label>
+            <input type="password" id="confPasswordReg" placeholder="Enter password again" required>
+            <button type="submit" class="BTNs" onclick="">Sign up</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('registration.static', filename='js/registration.js') }}"></script>
+{% endblock %}

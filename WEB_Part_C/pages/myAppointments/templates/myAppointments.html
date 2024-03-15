@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'My Appointments' %}
+{% set first_header = session.get('userName')+"'s Account" %}
+{% set second_header = 'My Appointments' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('myAppointments.static', filename='css/myAppointments.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    {% if massage %}<div id="existAppointmentMassage">{{ massage }}</div>{% endif %}
+    <div class="Table-box">
+        <div class="my-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Dentist</th>
+                        <th>Treatment</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in schedule_appointments %}
+                        <tr>
+                            <td>{{ appointment.date }}</td>
+                            <td>{{ appointment.time }}</td>
+                            {% if appointment.employee['role'] == 'Doctor' %}
+                                <td>Dr. {{ appointment.employee['firstName'] }} {{ appointment.employee['lastName'] }}</td>
+                            {% else %}
+                                <td>{{ appointment.employee['firstName'] }} {{ appointment.employee['lastName'] }}</td>
+                            {% endif %}
+                            <td>{{ appointment.treatment }}</td>
+                            <td>
+                                {% set appointment_date = appointment.date %}
+                                {% if appointment_date > today_date %}
+                                    <form class="choose-form" action="/deleteAppointment" method="POST">
+                                        <input type="hidden" name="appo_treatment" value="{{ appointment.treatment }}">
+                                        <input type="hidden" name="appo_dentist_phone" value="{{ appointment.employee['phoneNumber'] }}">
+                                        <input type="hidden" name="appo_date" value="{{ appointment.date }}">
+                                        <input type="hidden" name="appo_time" value="{{ appointment.time }}">
+                                        <input type="submit" value="Cancel" class="btn-cancel">
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('myAppointments.static', filename='js/myAppointments.js') }}"></script>
+{% endblock %}

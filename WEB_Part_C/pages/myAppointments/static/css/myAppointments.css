@@ -1,0 +1,75 @@
+/*---------Table--------*/
+.Table-box {
+    margin: 50px auto auto 260px;
+    width: 100%;
+}
+.my-table{
+    width: 100%;
+    border-collapse: collapse;
+    height: 400px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.my-table th,
+.my-table td {
+    border: 1px solid var(--btn-border-color);
+    padding: 10px;
+    text-align: center;
+    font-style: normal;
+}
+
+.my-table th {
+    background-color: var(--menu-btn-color);
+    font-weight: bold;
+    padding: 15px 42px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.my-table tr:nth-child(even) {
+    background-color: var(--bg-color);
+}
+
+.my-table tr:hover {
+    background-color: var(--btn-border-color);
+    color: var(--text-color);
+}
+
+.my-table a {
+    text-decoration: none;
+    color: cadetblue;
+    font-style: italic;
+}
+
+/*-------------BTNs--------------*/
+.btn-cancel {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--menu-btn-color);
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: var(--text-color);
+    color: red;
+}
+
+/*---------massage-----------*/
+#existAppointmentMassage {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-align: center;
+}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Schedule Appointment' %}
+{% set first_header = session.get('userName')+"'s Account" %}
+{% set second_header = 'Make An Appointment' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('makeAnAppointment.static', filename='css/makeAnAppointment.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    {% if not session.get('show_open_appointments_table') %}
+        <div class="form-box">
+            <form action="/findAnAppointment" method="GET" class="my-form" id="find-appointment-form">
+                <label >Treatment type: </label>
+                <select name="treatmentType" required>
+                    <option value="">Select a treatment type</option>
+                    <option value="Routine_dental_examination">Routine dental examination</option>
+                    <option value="Dental_restoration">Dental restoration</option>
+                    <option value="root_canal_treatment">Root canal treatment</option>
+                    <option value="Tooth_extraction">Tooth extraction</option>
+                    <option value="Tooth_whitening">Tooth whitening</option>
+                    <option value="Dental_cleanings">Dental cleanings</option>
+                </select>
+                <br>
+                <br>
+                <label for="dateAppointment">Date: </label>
+                <input type="date" name="dateAppointment" id="dateAppointment" required>
+                <br>
+                <br>
+                <input type="submit" class="BTNs" id="find-appointment-BTN" value="Find Appointment">
+            </form>
+        </div>
+    {% endif %}
+    {% if session.get('show_open_appointments_table') %}
+        <div class="Schedule-table">
+            <div class="Table-box">
+                <div class="my-table">
+                    <table id="find-appointment-Table">
+                        <thead>
+                            <tr>
+                                <th>Dentist</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appointment in open_appointments %}
+                                <tr>
+                                    {% if appointment.dentist['role'] == 'Doctor' %}
+                                        <td>Dr. {{ appointment.dentist['firstName'] }} {{ appointment.dentist['lastName'] }}</td>
+                                    {% else %}
+                                        <td>{{ appointment.dentist['firstName'] }} {{ appointment.dentist['lastName'] }}</td>
+                                    {% endif %}
+                                    <td>{{ appointment.date }}</td>
+                                    <td>{{ appointment.time }}</td>
+                                    <td>
+                                        <form class="choose-form" action="/insertAppointment" method="POST">
+                                            <input type="hidden" name="chosen_dentist_phone" value="{{ appointment.dentist['phoneNumber'] }}">
+                                            <input type="hidden" name="chosen_date" value="{{ appointment.date }}">
+                                            <input type="hidden" name="chosen_time" value="{{ appointment.time }}">
+                                            <input type="submit" value="Choose" class="chooseBTN">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('makeAnAppointment.static', filename='js/makeAnAppointment.js') }}"></script>
+{% endblock %}

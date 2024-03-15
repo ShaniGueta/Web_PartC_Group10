@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Log In' %}
+{% set first_header = 'Healthy Teeth' %}
+{% set second_header = 'Log In' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('logIn.static', filename='css/logIn.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+
+    {% if massage %}<div id="signInMassage">{{ massage }}</div>{% endif %}
+
+    <div class="form-box">
+        <form action="/logIn" method="POST" class="my-form" id="login">
+            <label>Email:</label>
+            <input type="email" name="email" id="logInEmail" placeholder="Enter your email" >
+            <label>Password:</label>
+            <input type="password" name="password" id="logInPassword" placeholder="Enter your password" >
+            <button type="submit" class="BTNs" >Log in</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('logIn.static', filename='js/logIn.js') }}"></script>
+{% endblock %}

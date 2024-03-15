@@ -1,0 +1,18 @@
+
+.main-menu {
+    display: flex;
+    justify-content: center;
+}
+.main-menu li {
+    display: inline-block;
+}
+.main-menu a {
+    text-decoration: none;
+    font-size: 25px;
+    background-color: var(--menu-btn-color);
+    color: var(--text-color);
+    padding: 6px 30px;
+    margin: 5px;
+    border: var(--btn-border-color) 1px solid;
+    border-radius: 25px;
+}

@@ -1,0 +1,13 @@
+
+:root{
+    --font-family: Arial, sans-serif;
+    --font-size: 20px;
+    --font-weight: normal;
+    --bg-color: #f1fbf4;
+    --btn-border-color: #b6eac9;
+    --menu-btn-color: #d4f2df;
+    --input-tab-color: #ccc;
+    --text-color: #333;
+    --placeholder-input-color: #2c2b2b;
+    --home-button-color: #4CAF50;
+}
